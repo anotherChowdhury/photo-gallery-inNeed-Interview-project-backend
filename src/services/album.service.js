@@ -84,12 +84,12 @@ export const getAllPublicAlbums = async ({ userId, lastReceivedAlbumId }) => {
   })
 }
 
-export const getAllAlbumsByUserId = async ({ userId, lastRecivedAlbumId }) => {
+export const getAllAlbumsByUserId = async ({ userId, lastReceivedAlbumId }) => {
   return await Album.findAll({
     where: {
       user_id: userId,
       aid: {
-        [Op.gt]: lastRecivedAlbumId
+        [Op.gt]: lastReceivedAlbumId
       }
     },
     include: [

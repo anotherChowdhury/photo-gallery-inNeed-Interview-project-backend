@@ -34,7 +34,7 @@ export const publicAlbums = async (req, res, next) => {
 
   console.log(req.query)
   let { lastReceivedId } = req.query
-  if (lastReceivedId == 'undefined') lastReceivedId = 0
+  if (lastReceivedId == 'undefined' || !lastReceivedId) lastReceivedId = 0
   console.log(lastReceivedId)
 
   args.lastReceivedAlbumId = lastReceivedId
@@ -51,10 +51,10 @@ export const publicAlbums = async (req, res, next) => {
 }
 
 export const allAlbumsByUser = async (req, res, next) => {
-  let { lastRecivedId } = req.query
-  if (!lastRecivedId) lastRecivedId = 0
+  let { lastReceivedId } = req.query
+  if (!lastReceivedId || lastReceivedId == 'undefined') lastReceivedId = 0
   try {
-    const albums = await albumService.getAllAlbumsByUserId({ userId: req.userId, lastRecivedAlbumId: lastRecivedId })
+    const albums = await albumService.getAllAlbumsByUserId({ userId: req.userId, lastReceivedAlbumId: lastRecivedId })
 
     if (!albums.length) throw new ErrorWithStatus('No Albums Found', 400)
 
@@ -70,7 +70,7 @@ export const allAlbumsByUser = async (req, res, next) => {
 export const allPublicAlbumsByUser = async (req, res, next) => {
   console.log(req.query)
   let { lastReceivedId } = req.query
-  if (lastReceivedId == 'undefined') lastReceivedId = 0
+  if (lastReceivedId == 'undefined' || !lastReceivedId) lastReceivedId = 0
   const { userId } = req.params
 
   try {
