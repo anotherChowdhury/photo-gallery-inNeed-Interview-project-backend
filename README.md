@@ -86,7 +86,7 @@
   
   
   
-  ##Wokrs to be done:
+  Wokrs to be done:
       1. Adding getphotosbyAlbumId to photo route (already added in controller & service)
       2. Cache first public albums request data and next public albums request data in redis 
       
