@@ -8,6 +8,6 @@ router.post('/', checkAuth, upload.array('photos'), photoController.addPhotos)
 
 // Create a get route maybe ?!?
 
-router.delete('/:id', checkAuth)
+router.delete('/:id', checkAuth, photoController.deletePhoto)
 
 export default router
